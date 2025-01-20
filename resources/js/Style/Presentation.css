@@ -1,0 +1,215 @@
+/* Conteneur principal */
+.presentation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Conteneur de l'image floutée */
+  .blurred-image-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+  }
+  
+  /* Image de fond */
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* filter: blur(1px);  */
+    transform: scale(1.1); 
+    transition: filter 0.3s ease, transform 0.3s ease; /* Ajout de la transition */
+  }
+  
+  /* Superposition de couleur */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 111, 137, 0.5); 
+  }
+ /* Conteneur principal */
+.presentation-section {
+    position: absolute;
+    bottom: -170px;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: #f5f5f5;  */
+  }
+  
+  /* Animation globale */
+  .director-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    max-width: 1000px;
+    background: #fff; 
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Ombre douce */
+    padding: 30px;
+    opacity: 0; /* Initialement invisible */
+    transform: translateY(100px); /* Hors de l'écran */
+    animation: slideUp 0.8s ease-out forwards; /* Animation */
+  }
+  
+  /* Animation keyframes */
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0); 
+    }
+  }
+  
+  /* Image et nom */
+  .director-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .director-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Image circulaire */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .director-name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Contenu du texte */
+  .director-content {
+    flex: 1;
+  }
+  
+  .director-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .director-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  
+  .footer-container {
+    position: absolute;
+    top: 1000px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; /* Sépare le contenu principal du bas */
+    align-items: center;
+    width: 100%;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 20px 0;
+    height: 400px;
+    /* position: relative; */
+  }
+  
+  /* Contenu principal aligné horizontalement */
+  .footer-content {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around; /* Espacement uniforme entre les sections */
+    align-items: flex-start; 
+    width: 100%;
+    max-width: 1200px;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  
+  /* Chaque section du footer */
+  .footer-section {
+    text-align: center;
+    /* border: 1px solid; */
+    /* margin: 20px; */
+    width: 30%; /* Assure une largeur égale pour chaque section */
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  /* Section centrale avec le logo */
+  .footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  /* Formulaire de la newsletter */
+  .newsletter-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .newsletter-input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .newsletter-button {
+    padding: 8px 12px;
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .newsletter-button:hover {
+    background-color: #580b9e;
+  }
+  
+  /* Footer bottom (centré en bas) */
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%; /* S'étend sur toute la largeur */
+  }
+  

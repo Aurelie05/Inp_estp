@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fjalla+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Revolution&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+.container{
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* display: flex; */
+    /* background-color: blueviolet; */
+}
+.navbar{
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    font-style: normal;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 255, 255);
+    /* border: 1px solid; */
+    /* border: 1px solid red; */
+}
+/* Navbar fixe */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Visible */
+.navbar.visible {
+    transform: translateY(0); /* Complètement visible */
+}
+
+/* Cachée */
+.navbar.hidden {
+    transform: translateY(-100%); /* Cachée en haut de l'écran */
+}
+
+/* Contenu principal (pour éviter que la navbar ne couvre le contenu) */
+.guestchildren {
+    padding-top: 80px; /* Compense la hauteur de la navbar */
+}
+
+.logosection{
+    width: 10%;
+    height: 80px;
+    padding: 20px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    /* border: 1px solid; */
+    object-fit: cover;
+}
+.logosection img{
+    width: 100%;
+    /* height: 100px; */
+    padding: 10px;
+    object-fit: cover;
+    /* height: 100%; */
+    
+}
+.menusection{
+    width: 90%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    font-family: "Roboto", serif;
+    cursor: pointer;
+}
+
+.menu1:hover{
+    color: rgb(126, 7, 224);
+    border-bottom: 2px solid rgb(126, 7, 224);
+}
+/* ... existing code ... */
+/* {{ edit_1 }} */
