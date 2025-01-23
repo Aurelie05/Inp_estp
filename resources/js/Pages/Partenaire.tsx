@@ -6,6 +6,7 @@ import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import "slick-carousel/slick/slick-theme.css";
 import Pa from "@/Assets/INP-HB_files/PA (2).592d777f90d86ce57947.png"
 import Slider from "react-slick";
+import image from "@/Assets/SiteSud4.287cfcf705cf36fa10d2.jpg"
 import slide2 from "@/Assets/INP-HB_files/PE (2).0bbba88c4d6cae1d2614.png"
 import slide3 from "@/Assets/INP-HB_files/PE (3).6c49da634e18ba182378.png"
 import slide4 from "@/Assets/INP-HB_files/PE (6).4a4a7e32114788396eba.png"
@@ -55,6 +56,14 @@ const Partenaire = () => {
       };
   return (
     <Guest>
+      <div className="blurred-image-container">
+            <img
+            src={image} // Remplace par l'URL de ton image
+            alt="Background"
+            className="background-image"
+            />
+            <div className="overlay"></div>
+      </div>
      <div className="partenaire-container">
       <h1 className="partenaire-title">Nos Partenaires</h1>
 

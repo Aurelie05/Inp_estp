@@ -2,12 +2,43 @@ import React from "react";
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import Guest from '@/Layouts/GuestLayout';
 import '@/Style/Presentation.css'
-import image from "@/Assets/SiteNord.9a5a9ba66344c1b388db.jpg"
+import Slider from "react-slick";
+import image from "@/Assets/SiteSud.8d60a40fc4177a07cebc.jpg"
 import image2 from '@/Assets/INP-HB_files/ESTP.6022a53348fd04e97539.png'
-
+import slide1 from '@/Assets/SiteSud3.5deff3c7f79f2664d30c.jpg'
+import slide2 from '@/Assets/SiteSud4.287cfcf705cf36fa10d2.jpg'
+import slide3 from '@/Assets/SiteSud6.df1e344005c77a58d5a5.jpg'
 
 
 const Presentation = () => {
+  const settings = {
+    dots: true, // Affiche des points de navigation
+    infinite: true, // Slider infini
+    speed: 500, // Vitesse de transition
+    slidesToShow: 1, // Nombre d'images visibles
+    slidesToScroll: 1, // Défilement d'une image à la fois
+    centerMode: true, // Centre le slider
+    centerPadding: "0", // Pas de marge supplémentaire
+    arrows: false, // Désactive les flèches
+  };
+
+  const images = [
+    {
+      // id: 1,
+      src: slide1,
+      alt: "Image 1",
+    },
+    {
+      // id: 2,
+      src: slide2,
+      alt: "Image 2",
+    },
+    {
+      // id: 3,
+      src: slide2,
+      alt: "Image 3",
+    },
+  ];
   return (
     <div className="presentation-container">
       {/* Composant Guest */}
@@ -46,7 +77,23 @@ const Presentation = () => {
           </p>
         </div>
       </div>
+
+      {/* <div className="text2">
+        <h1><span className="line2"></span>Les sites de l ESTP</h1>
+      </div> */}
     </div>
+
+    {/* <div className="slider-container">
+      <h2 className="slider-title">SITE CENTRE</h2>
+      <Slider {...settings}>
+        {images.map((image) => (
+          <div  className="slider-item">
+            <img src={image.src} alt={image.alt} className="slider-image" />
+          </div>
+        ))}
+      </Slider>
+    </div> */}
+
 
 
     <footer className="footer-container">

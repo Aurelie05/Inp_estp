@@ -4,6 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FiliereController;
+use App\Http\Controllers\EcoleController;
+use App\Http\Controllers\InformationController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

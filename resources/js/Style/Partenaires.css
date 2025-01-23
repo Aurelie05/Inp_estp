@@ -1,3 +1,41 @@
+.presentation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Conteneur de l'image floutée */
+.blurred-image-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+/* Image de fond */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* filter: blur(1px);  */
+  transform: scale(1.1); 
+  transition: filter 0.3s ease, transform 0.3s ease; /* Ajout de la transition */
+}
+
+/* Superposition de couleur */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(45, 111, 137, 0.5); 
+}
+
 /* Remove the import and start directly with CSS */
 .partenaire-container {
     padding: 40px 20px;
@@ -114,7 +152,7 @@
   
   .footer-container {
     position: absolute;
-    top: 1000px;
+    top: 1500px;
     display: flex;
     flex-direction: row; 
     justify-content: space-between; /* Sépare le contenu principal du bas */

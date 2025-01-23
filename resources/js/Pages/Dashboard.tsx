@@ -1,26 +1,52 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
+import '@/Style/Dash.css'
 
 export default function Dashboard() {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
-
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
+        <AuthenticatedLayout>
+            <main>
+             <div className="top-bar">
+                <input type="text" placeholder="Search..." />
+                <div className="user-section">
+                    <span>Notifications</span>
+                    <span>Settings</span>
+                    <span>
+                        <img
+                        src={logo}
+                        alt="User Avatar"
+                        className="avatar"
+                        />
+                    </span>
                 </div>
             </div>
+
+      <div className="stats-grid">
+        <div className="stats-card">
+          <h3>155+</h3>
+          <p>Completed Courses</p>
+        </div>
+        <div className="stats-card">
+          <h3>39+</h3>
+          <p>Earned Certificates</p>
+        </div>
+        <div className="stats-card">
+          <h3>25+</h3>
+          <p>Courses in Progress</p>
+        </div>
+        <div className="stats-card">
+          <h3>18k+</h3>
+          <p>Community Support</p>
+        </div>
+      </div>
+
+       
+      
+    
+            
+
+      </main>  
         </AuthenticatedLayout>
     );
 }

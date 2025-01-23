@@ -1,6 +1,6 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-// import Footer from "@/Layouts/Footer";
+import { ImMenu3 } from "react-icons/im";
 import { PropsWithChildren } from 'react';
 import { useEffect, useState } from "react";
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
@@ -30,6 +30,13 @@ export default function Guest({ children }: PropsWithChildren) {
         };
     }, [lastScrollY]);
 
+    const[menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
     return (
         <div className='container'>
             <div className={`navbar ${isVisible ? "visible" : "hidden"}`}>
@@ -37,16 +44,43 @@ export default function Guest({ children }: PropsWithChildren) {
                     <img src={logo} alt="" />
                 </div>
                 <div className='menusection'>
-                    <div className='menu1' onClick={ () => window.open('/','_self')}>Accueil</div>
-                    <div className='menu1' onClick={ () => window.open('/presentation','_self')}>Présentation</div>
-                    <div className='menu1' onClick={ () => window.open('/ecole','_self')}>Filieres</div>
-                    <div className='menu1' onClick={ () => window.open('/partenaire','_self')}>Partenaires</div>
-                    <div className='menu1' onClick={ () => window.open('/actualités','_self')}>Actualités</div>
-                    <div className='menu1' >Offres de stage</div>
+                    
+                    <div className='menu' onClick={ () => window.open('/','_self')}>Accueil</div>
+                    <div className="menu dropdown" onClick={ () => window.open('/presentation','_self')}>
+                        Présentation
+                        <div className="dropdown-content">
+                            <div className="submenu" >Mot du Directeur</div>
+                            <div className="submenu" >Campus</div>
+                        </div>
+                    </div>
+                    <div className='menu' onClick={ () => window.open('/ecole','_self')}>Filieres</div>
+                    <div className='menu' onClick={ () => window.open('/partenaire','_self')}>Partenaires</div>
+                    <div className='menu' onClick={ () => window.open('/actualités','_self')}>Actualités</div>
+                    <div className='menu' >Offres de stage</div>
+                    <div className='menu2' onClick ={toggleMenu}>
+                        {menuOpen ? <ImMenu3 /> : <ImMenu3 />}
+                    </div>
                 </div>
             </div>
 
 
+
+            {menuOpen && (
+                <>  
+                <nav className='menu3'>
+                    <ul>
+                        <li>Accueil</li>
+                        <li>Presentation</li>
+                        <li>Filieres</li>
+                        <li>Partenaires</li>
+                        <li>Actualités</li>
+                        <li>Offres de stage</li>
+                    </ul>
+                    
+                </nav>
+                </>
+
+            )}
 
             <div className='guestchildren'>
                 {children}

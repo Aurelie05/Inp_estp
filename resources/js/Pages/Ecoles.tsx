@@ -3,6 +3,7 @@ import Guest from '@/Layouts/GuestLayout';
 import { FaCircleArrowDown } from "react-icons/fa6";
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import React from 'react';
+import image from "@/Assets/SiteSud.8d60a40fc4177a07cebc.jpg"
 import '@/Style/Ecoles.css';
 
 const Ecoles = () => {
@@ -55,6 +56,14 @@ const Ecoles = () => {
 
   return (
     <Guest>
+      <div className="blurred-image-container">
+            <img
+            src={image} // Remplace par l'URL de ton image
+            alt="Background"
+            className="background-image"
+            />
+            <div className="overlay"></div>
+      </div>
       <div className="page-formation-alt">
         <h1>Cycle Technicien Supérieur <FaCircleArrowDown /></h1>
         <div className="schools-list">
