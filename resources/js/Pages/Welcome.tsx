@@ -1,6 +1,7 @@
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import Guest from '@/Layouts/GuestLayout';
+// import tailwindcss from '@tailwindcss/vite'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -109,7 +110,7 @@ export default function Welcome({
         </div>
 
                 <div className="events-container">
-                    <h1 className="events-title">
+                    <h1 className="events-title bg-sky-500">
                     
                         <span className="line2"></span>
                     
