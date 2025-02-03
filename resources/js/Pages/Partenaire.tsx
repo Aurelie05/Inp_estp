@@ -72,7 +72,7 @@ const Partenaire = () => {
         <h2 className="section-title">Partenaires Académiques</h2>
         <Slider {...sliderSettings}>
           {partenairesAcademiques.map((partenaire) => (
-            <div key={partenaire.id} className="slider-item">
+            <div key={partenaire.id} className="slider-item grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
               <div className="logo-container">
                 <img
                   src={partenaire.logo}

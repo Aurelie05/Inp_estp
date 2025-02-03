@@ -75,47 +75,45 @@ export default function Welcome({
         <Guest>
             <Head title="Welcome" />
             <div className='welcomecontainer'>
-                <div className='imageslider'>
+                <div className="imageslider ">
                     <Slider {...settings}>
                         <div>
-                            <img src={slide1} alt="" />
+                            <img src={slide1} alt=""  />
                         </div>
                         <div>
-                            <img src={slide2} alt="" />
+                            <img src={slide2} alt=""  />
                         </div>
-
                     </Slider>
-                    
-
                 </div>
+
                 <div className="text-box">
-            <h1>
-                <span className="line2"></span>
-                PRESENTATION
-            </h1>
-            <p>
-                Crée en 1963, l'Ecole Nationale Supérieure des Travaux Publics (ENSTP) initialement à Abidjan a été transférée à Yamoussoukro en 1979. À la faveur de la restructuration des grandes écoles de Yamoussoukro en 1996, l'INP-HB a été créé. Il regroupe huit (08) grandes écoles dont l'Ecole Supérieure des Travaux Publics (ESTP). Transfuge de l'ex-ENSTP, l'ESTP est chargée d'assurer la formation initiale dans le domaine du Génie Civil.
-            </p>
-            <p>
-                L'ESTP a pour mission :
-            </p>
-            <ul>
-                <li>la Formation initiale de Techniciens Supérieurs et d'Ingénieurs dans les domaines du Génie Civil et de toutes spécialités connexes.</li>
-                <li>la Production</li>
-                <li>la Prestation et expertise pour les entreprises et les collectivités locales</li>
-            </ul>
-            <button className="voir-plus-btn" onClick={ () => window.open('/presentation','_self')}>
-                Voir plus
-            </button>
-        </div>
+                    <h1>
+                        <span className="line2"></span>
+                        PRESENTATION
+                    </h1>
+                    <p className='text-box1'>
+                        Crée en 1963, l'Ecole Nationale Supérieure des Travaux Publics (ENSTP) initialement à Abidjan a été transférée à Yamoussoukro en 1979. À la faveur de la restructuration des grandes écoles de Yamoussoukro en 1996, l'INP-HB a été créé. Il regroupe huit (08) grandes écoles dont l'Ecole Supérieure des Travaux Publics (ESTP). Transfuge de l'ex-ENSTP, l'ESTP est chargée d'assurer la formation initiale dans le domaine du Génie Civil.
+                    </p>
+                    <p className='text-box2'>
+                        L'ESTP a pour mission :
+                    </p>
+                    <ul className='text-box3'>
+                        <li>la Formation initiale de Techniciens Supérieurs et d'Ingénieurs dans les domaines du Génie Civil et de toutes spécialités connexes.</li>
+                        <li>la Production</li>
+                        <li>la Prestation et expertise pour les entreprises et les collectivités locales</li>
+                    </ul>
+                    <button className="voir-plus-btn" onClick={ () => window.open('/presentation','_self')}>
+                        Voir plus
+                    </button>
+                </div>
 
                 <div className="events-container">
-                    <h1 className="events-title bg-sky-500">
+                    <h1 className="events-title ">
                     
                         <span className="line2"></span>
                     
                         NOS EVENEMENTS</h1>
-                    <div className="events-cards">
+                    <div className="events-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {events.map((event) => (
                         <div key={event.id} className="event-card">
                             <img src={event.image} alt="Event" className="event-image" />

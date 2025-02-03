@@ -10,41 +10,121 @@ use App\Models\Filiere;
 use App\Models\Ecole;
 use App\Models\Information;
 
+use Inertia\Inertia;
+
+
 class AdminController extends Controller
 {
-    // Gestion des sliders
-    public function sliders()
-    {
-        $sliders = Slider::all();
-        return view('admin.sliders.index', compact('sliders')); // Affiche les sliders
-    }
+   // Afficher tous les sliders
+   public function index()
+   {
+       $slider = Slider::all(); // Récupérer tous les sliders
+       dd($slider);  
+       return Inertia::render('Slider/SliderPage', [
+           'slider' => $slider,
+           'csrf_token' => csrf_token(), // Passer le CSRF token
+       ]);
+   }
 
-    public function storeSlider(Request $request)
-    {
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+   // Ajouter un nouveau slider
+   public function store(Request $request)
+   {
+       // Valider les données
+       $request->validate([
+           'titre' => 'required|string|max:255',
+           'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+       ]);
 
-        $slider = new Slider();
-        $slider->titre = $request->titre;
-        
-        if ($request->hasFile('image')) {
-            $slider->image = $request->file('image')->store('sliders', 'public'); // Stocker dans le dossier 'sliders'
-        }
+       try {
+           $slider = new Slider();
+           $slider->titre = $request->titre;
 
-        $slider->save();
+           // Vérification et stockage de l'image
+           if ($request->hasFile('image')) {
+               $slider->image = $request->file('image')->store('slider', 'public');
+           }
 
-        return redirect()->back()->with('success', 'Slider ajouté avec succès !');
-    }
+           $slider->save(); // Sauvegarder le slider
 
-    public function deleteSlider($id)
-    {
-        $slider = Slider::findOrFail($id);
-        $slider->delete();
-        return redirect()->back()->with('success', 'Slider supprimé avec succès !');
-    }
+           // Retourner une réponse Inertia après la création du slider
+           return Inertia::render('SliderPage', [
+               'slider' => Slider::all(),
+               'message' => 'Slider créé avec succès',
+           ]);
 
+       } catch (\Exception $e) {
+           // En cas d'erreur, on retourne une erreur dans la réponse Inertia
+           return Inertia::render('SliderPage', [
+               'message' => 'Erreur lors de la création du slider: ' . $e->getMessage(),
+           ]);
+       }
+   }
+
+   // Afficher un slider par ID
+   public function show($id)
+   {
+       $slider = Slider::find($id);
+       
+       if (!$slider) {
+           // Retourner un message d'erreur via Inertia si le slider n'est pas trouvé
+           return Inertia::render('SliderPage', [
+               'message' => 'Slider non trouvé',
+           ]);
+       }
+
+       // Retourner le slider trouvé avec Inertia
+       return Inertia::render('SliderPage', [
+           'slider' => $slider,
+       ]);
+   }
+
+   // Mettre à jour un slider
+   public function update(Request $request, $id)
+   {
+       // Récupérer le slider par ID
+       $slider = Slider::find($id);
+       
+       if (!$slider) {
+           return Inertia::render('SliderPage', [
+               'message' => 'Slider non trouvé',
+           ]);
+       }
+
+       // Validation des données de mise à jour
+       $validated = $request->validate([
+           'titre' => 'string|max:255',
+           'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+       ]);
+
+       // Mise à jour du slider
+       $slider->update($validated);
+
+       // Retourner une réponse Inertia après la mise à jour
+       return Inertia::render('SliderPage', [
+           'sliders' => Slider::all(),
+           'message' => 'Slider mis à jour avec succès',
+       ]);
+   }
+
+   // Supprimer un slider
+   public function destroy($id)
+   {
+       $slider = Slider::find($id);
+
+       if (!$slider) {
+           return Inertia::render('SliderPage', [
+               'message' => 'Slider non trouvé',
+           ]);
+       }
+
+       $slider->delete(); // Supprimer le slider
+
+       // Retourner une réponse Inertia après la suppression
+       return Inertia::render('SliderPage', [
+           'sliders' => Slider::all(),
+           'message' => 'Slider supprimé avec succès',
+       ]);
+   }
     // Gestion des présentations
     public function presentations()
     {

@@ -5,6 +5,7 @@
     justify-content: center;
     display: flex;
     overflow: hidden;
+    /* border: 3px solid red; */
 }
 .imageslider{
     width: 100%;
@@ -42,6 +43,7 @@
     /* background-color: brown; */
 }
 .text-box {
+
     width: 80%;
     max-width: 1200px;
     padding: 20px;
@@ -219,7 +221,7 @@
     /* height: 700px; */
     text-align: center;
     padding: 20px;
-    /* background-color: #f4f4f4; */
+    /* background-color: #7c3b3b; */
   }
   
   /* Titre */
@@ -352,6 +354,7 @@
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
+    /* border: 3px solid ; */
     width: 80%;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre sous le cadre */
@@ -381,6 +384,7 @@
     /* top: -60px; */
     width: 100%;
     align-items: center;
+    /* border: 1px solid red; */
     align-content: center;
     /* justify-content: center; */
     display: flex;
@@ -406,6 +410,7 @@
 .boxliste {
     width: 50%;
     flex: 1;
+    /* border: 1px solid; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -559,7 +564,197 @@
 
 
 /* Écrans petits (mobile) */
-@media (max-width: 768px) {
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+
+    .welcomecontainer{
+        width: 100%;
+        /* border: 2px solid red; */
+    }
+    .imageslider{
+        max-width: 100%;
+        height: 200px;
+        display: block;
+        overflow: hidden;
+        position: relative;
+        /* outline: 2px dashed blue; */
+        /* object-fit: contain; */
+        /* border: 3px solid ; */
+    }
+    .text-box{
+        width: 70%;
+        /* margin: 0 auto; */
+        height: 400px;
+        position: absolute;
+        bottom: -60px; 
+        left: 50%;
+        color: #000;
+        transform: translateX(-50%);
+        /* font-size: 15px; */
+        /* border: 6px solid black; */
+    }
+    .text-box h1{
+        font-size: 19px;
+    }
+    .text-box .line2{
+        /* font-size: 10px; */
+        height: 19px;
+    }
+    .text-box1 {
+        font-size: 14px; /* Ajuste si nécessaire */
+        width: 100%;
+        /* height: 250px; */
+        overflow: hidden; /* Cache le texte qui dépasse */
+        display: -webkit-box;
+        -webkit-line-clamp: 10; 
+        -webkit-box-orient: vertical;
+    }
+    .text-box2 {
+        /* color: #000; */
+        display: none;
+        font-size: 10px;
+        overflow: hidden; /* Ajouté pour cacher le texte qui dépasse */
+        text-overflow: ellipsis; /* Ajouté pour afficher des points de suspension */
+        white-space: nowrap; /* Ajouté pour empêcher le texte de passer à la ligne */
+    }
+    .text-box3 {
+        display: none;
+        /* color: #000; */
+        font-size: 10px;
+        overflow: hidden;  
+        text-overflow: ellipsis;  
+        /* white-space: nowrap;  */
+    }
+    .events-container{
+        width: 100%;
+        position: absolute;
+        top: 650px;
+        /* border: 1px solid; */
+
+    }
+    .events-title{
+        /* top: 30px; */
+        /* position: absolute; */
+        font-size: 19px;
+    }
+    .events-title span{
+        /* font-size: 10px; */
+        height: 19px;
+    }
+    .events-cards{
+        width: 250px;
+        margin: 0 auto;
+        /* position: absolute; */
+        /* top: 30px; */
+
+    }
+    .box4{
+        width: 90%;
+        height: 300px;
+        margin: 0 auto;
+        position: absolute;
+        top: 1800px;
+    }
+    .box4 h2{
+        font-size: 19px;
+    }
+    .box4 span{
+        height: 19px;
+    }
+    
+    .boximage{
+        width: 40%;
+    }
+    .boxliste{
+        width: 60%;
+        /* border: 1px solid; */
+    }
+    .boxliste h1{
+        font-size: 12px;
+        /* width: 70%; */
+        /* border: 1px solid; */
+    }
+    .boxliste ul li{
+        font-size: 10px;
+    }
+
+    .box5{
+        width: 90%;
+        height: 300px;
+        margin: 0 auto;
+        position: absolute;
+        top: 2150px;
+    }
+   
+    .box5 span{
+        height: 19px;
+    }
+    
+    .boximage2{
+        width: 40%;
+    }
+    .boxliste h1{
+        font-size: 12px;
+        /* width: 70%; */
+        /* border: 1px solid; */
+    }
+    .box6{
+        width: 90%;
+        height: 300px;
+        margin: 0 auto;
+        position: absolute;
+        top: 2600px;
+        z-index: 1;
+    }
+    .box6 h2{
+        font-size: 18px;
+        /* border: 1px solid; */
+    }
+    .box6 span{
+        height: 19px;
+    }
+    
+    .boximage2{
+        width: 40%;
+    }
+    .boxliste{
+        width: 60%;
+        /* border: 1px solid; */
+    }
+    .boxliste h1{
+        font-size: 12px;
+        /* width: 70%; */
+        /* border: 1px solid; */
+    }
+    .boxliste p{
+        font-size: 10px;
+    }
+    
+    .box7{
+        width: 90%;
+        height: 300px;
+        margin: 0 auto;
+        position: absolute;
+        top: 2950px;
+        z-index: 1;
+    }
+    
+    
+    .boximage2{
+        width: 40%;
+    }
+    .boxliste{
+        width: 60%;
+        /* border: 1px solid; */
+    }
+    .boxliste h1{
+        font-size: 10px;
+        /* width: 70%; */
+        /* border: 1px solid; */
+    }
+    .boxliste p{
+        font-size: 10px;
+    }
     
  }
  

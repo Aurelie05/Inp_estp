@@ -7,14 +7,16 @@ import '@/Style/Auth.css'
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
+interface User {
+    name: string;
+    email: string;
+}
+
 export default function Authenticated({
     header,
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
-    const user = usePage().props.auth.user;
-
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const { user } = usePage().props.auth as { user: User };
 
     return (
         <div className="authenticated">
@@ -26,7 +28,7 @@ export default function Authenticated({
           <nav>
             <ul>
               <li>Dashboard</li>
-              <li>Slider</li>
+              <li onClick={ () => window.open('/sliders','_self')}>Slider</li>
               <li>Presentation</li>
               <li>Evenement</li>
               <li>Ecole</li>
