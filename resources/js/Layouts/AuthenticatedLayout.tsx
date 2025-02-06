@@ -30,9 +30,9 @@ export default function Authenticated({
               <li>Dashboard</li>
               <li onClick={ () => window.open('/sliders','_self')}>Slider</li>
               <li>Presentation</li>
-              <li>Evenement</li>
+              <li onClick={ () => window.open('/events','_self')}>Evenement</li>
               <li>Ecole</li>
-              <li>Information</li>
+              <li onClick={ () => window.open('/information','_self')}>Information</li>
               <li>Filiere</li>
               
             </ul>

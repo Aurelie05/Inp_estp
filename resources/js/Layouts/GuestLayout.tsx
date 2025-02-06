@@ -1,5 +1,4 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import tailwindcss from '@tailwindcss/vite'
 import { Link } from '@inertiajs/react';
 import { ImMenu3 } from "react-icons/im";
 import { PropsWithChildren } from 'react';

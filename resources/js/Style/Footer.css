@@ -34,6 +34,7 @@
   }
   
   .footer-section h3 {
+    color: #6a0dad;
     margin-bottom: 10px;
   }
   
@@ -97,5 +98,33 @@
     right: 0;
     left: 0;
     width: 100%; /* S'étend sur toute la largeur */
+  }
+  
+  @media (min-width: 320px) and (max-width: 767px) {
+    .footer-container{
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      flex-direction: column;
+      top: 3300px;
+    }
+    .footer-center{
+      display: none;
+    }
+    .footer-section{
+      margin-bottom: 40px;
+    }
+
+    h3{
+      font-size: 15px;
+ 
+      color: #6a0dad;
+    }
+    .footer-bottom{
+      /* margin-top: 50px; */
+      height: 30px;
+      /* border: 1px solid violet; */
+    }
+     
   }
   

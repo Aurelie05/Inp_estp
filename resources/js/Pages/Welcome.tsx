@@ -1,7 +1,7 @@
-import { PageProps } from '@/types';
+// import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
+import usePage from '@inertiajs/react';
 import Guest from '@/Layouts/GuestLayout';
-// import tailwindcss from '@tailwindcss/vite'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,15 +16,38 @@ import Footer from '@/Layouts/Footer';
 import image2 from '@/Assets/INP-HB_files/cycles.png'
 import image3 from '@/Assets/INP-HB_files/cycle3.jpg'
 import image4 from '@/Assets/INP-HB_files/cycles2.png'
-import event1 from '@/Assets/event1.jpg'
-import event2 from '@/Assets/event2.jpg'
-import event3 from '@/Assets/event3.jpg'
+
+
+interface PageProp{
+    auth: any,
+    laravelVersion: string,
+    phpVersion : string,
+    evenements: EventInfo[],
+    sliders: SliderInfo[]; // Ajout de la prop sliders
+    
+    
+}
+type EventInfo = {
+    id: number;
+    image: string;
+    date: string;
+    lieu: string;  // Remplace 'location' par 'lieu'
+    description: string;
+  };
+  interface SliderInfo {
+    id: number;
+    titre: string;
+    image: string;
+}
+ 
 
 export default function Welcome({
     auth,
     laravelVersion,
     phpVersion,
-}: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+    evenements,
+    sliders,
+}: PageProp) {
     const handleImageError = () => {
         document
             .getElementById('screenshot-container')
@@ -35,7 +58,7 @@ export default function Welcome({
             ?.classList.add('!flex-row');
         document.getElementById('background')?.classList.add('!hidden');
     };
-    
+    console.log('Événements:', evenements); 
         const settings = {
           dots: true,              // Affiche les points de navigation
           infinite: true,          // Boucle infinie
@@ -47,29 +70,7 @@ export default function Welcome({
         };
 
         
-          const events = [
-            {
-              id: 1,
-              image: event1, // Remplace par l'URL de l'image
-              date: "01 Janvier 2025",
-              location: "Lieu 1",
-              description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-            },
-            {
-              id: 2,
-              image: event2, // Remplace par l'URL de l'image
-              date: "15 Février 2025",
-              location: "Lieu 2",
-              description: "Sapiente nisi obcaecati corrupti.",
-            },
-            {
-              id: 3,
-              image: event3, // Remplace par l'URL de l'image
-              date: "20 Mars 2025",
-              location: "Lieu 3",
-              description: "Lorem ipsum dolor sit amet consectetur.",
-            },
-          ];
+          
 
     return (
         <Guest>
@@ -77,12 +78,15 @@ export default function Welcome({
             <div className='welcomecontainer'>
                 <div className="imageslider ">
                     <Slider {...settings}>
-                        <div>
-                            <img src={slide1} alt=""  />
-                        </div>
-                        <div>
-                            <img src={slide2} alt=""  />
-                        </div>
+                        {sliders && sliders.length > 0 ? (
+                            sliders.map(slider => (
+                                <div key={slider.id}>
+                                    <img src={`/storage/${slider.image}`} alt={slider.titre} />
+                                </div>
+                            ))
+                        ) : (
+                            <p>Aucun slider disponible.</p>
+                        )}
                     </Slider>
                 </div>
 
@@ -108,26 +112,33 @@ export default function Welcome({
                 </div>
 
                 <div className="events-container">
-                    <h1 className="events-title ">
-                    
-                        <span className="line2"></span>
-                    
-                        NOS EVENEMENTS</h1>
-                    <div className="events-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                        {events.map((event) => (
+            <h1 className="events-title">
+                <span className="line2"></span>
+                NOS EVENEMENTS
+            </h1>
+            <div className="events-cards">
+                {(evenements && evenements.length > 0) ? (
+                    evenements.map((event) => (
                         <div key={event.id} className="event-card">
-                            <img src={event.image} alt="Event" className="event-image" />
+                            <img
+                                src={`/storage/${event.image}`}
+                                // alt={event.titre}
+                                className="event-image"
+                            />
                             <div className="event-details">
-                            <div className="event-info">
-                                <span className="event-date">📅 {event.date}</span>
-                                <span className="event-location">📍 {event.location}</span>
-                            </div>
-                            <p className="event-description">{event.description}</p>
+                                <div className="event-info">
+                                    <span className="event-date">📅 {event.date}</span>
+                                    <span className="event-lieu">📍 {event.lieu}</span>
+                                </div>
+                                <p className="event-description">{event.description}</p>
                             </div>
                         </div>
-                        ))}
-                    </div>
-                </div>
+                    ))
+                ) : (
+                    <p>Aucun événement pour le moment.</p>
+                )}
+            </div>
+        </div>
                 
                 
                 <div className='box4'>

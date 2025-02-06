@@ -151,7 +151,7 @@
 
 
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px) {
 
     .navbar2{
         width: 100%;
@@ -186,6 +186,8 @@
         width: 50%;
         height: 80px;
         display: flex;
+        justify-content: center;
+        align-items: center;
         /* border: 1px solid; */
 
     }
@@ -201,7 +203,8 @@
         max-width: 50%; /* Évite qu'il prenne trop d'espace */
         height: 80px;
         display: flex;
-        align-items: center;justify-content: center;
+        /* align-items: center; */
+        justify-content: center;
         align-content: center;
         display: block !important;
         font-size: 40px;

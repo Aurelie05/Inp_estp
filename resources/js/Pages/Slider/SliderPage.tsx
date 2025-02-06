@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { usePage } from "@inertiajs/react";
 import Authenticated from '@/Layouts/AuthenticatedLayout';
-import '@/Style/SliderPage.css'
+import '@/Style/SliderPage.css';
 
 interface Slider {
     id: number;
@@ -9,16 +9,11 @@ interface Slider {
     image: string;
 }
 
-interface Props {
-    slider: Slider[];  // Liste des sliders passée depuis Inertia
-    csrf_token: string;  // CSRF token
-}
-
-export default function SliderPage({ slider = [] }: Props) {  // Valeur par défaut vide pour sliders
-
-    const { sliders } = usePage().props; // Récupère les données depuis le backend
+export default function SliderPage() {  
+    const { slider = [] } = usePage().props as { slider?: Slider[] }; // Récupère les données depuis Inertia
     
-    console.log('Valeur de slider:', slider);
+    console.log('Valeur de slider:', slider);  // Vérifie que les données sont bien reçues
+
     return (
         <Authenticated>
             <div className="p-6">
@@ -34,12 +29,12 @@ export default function SliderPage({ slider = [] }: Props) {  // Valeur par déf
 
                 <ul>
                     {slider.length > 0 ? (
-                        slider.map((slider) => (
-                            <li key={slider.id} className="mb-4">
-                                <h3 className="font-semibold">{slider.titre}</h3>
+                        slider.map((item) => (
+                            <li key={item.id} className="mb-4">
+                                <h3 className="font-semibold">{item.titre}</h3>
                                 <img
-                                    src={`/storage/${slider.image}`}
-                                    alt={slider.titre}
+                                    src={`/storage/${item.image}`}
+                                    alt={item.titre}
                                     className="w-full max-w-sm rounded"
                                 />
                             </li>

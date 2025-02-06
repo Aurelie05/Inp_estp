@@ -4,9 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+// use App\Models\Evenement;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PresentationController;
-use App\Http\Controllers\EventController;
+// use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\EcoleController;
 use App\Http\Controllers\InformationController;
@@ -51,25 +52,26 @@ Route::get('/actualités', function () {
 
 // Routes protégées par authentification
 Route::middleware(['auth'])->group(function () {
-    // Afficher la liste des sliders
-    Route::get('/sliders', function (){
-        return Inertia::render('Slider/SliderPage');
-    }) ->name('sliders.index');
 
+    Route::get('/sliders', [AdminController::class, 'sliders'])->name('sliders.index'); 
+    Route::post('/sliders', [AdminController::class, 'store'])->name('sliders.store');
+    Route::delete('/sliders/{id}', [AdminController::class, 'deleteSlider'])->name('sliders.delete');
+   
     // Afficher le formulaire pour créer un slider
     Route::get('/sliders/create', function () {
         return Inertia::render('Slider/SliderForm');
     })->name('sliders.create');
 
-    // Ajouter un slider
-    Route::post('/sliders', [AdminController::class, 'store'])->name('sliders.store');
+ // Afficher la liste des sliders
+    // Route::get('/sliders', function (){
+    //     return Inertia::render('Slider/SliderPage');
+    // }) ->name('sliders.index');
+    
 
-    // Supprimer un slider
-    Route::delete('/sliders/{id}', [AdminController::class, 'deleteSlider'])->name('sliders.delete');
 });
 
 // Autres routes pour l'admin
-Route::get('/admin/sliders', [AdminController::class, 'sliders'])->name('admin.sliders');
+// Route::get('/admin/sliders', [AdminController::class, 'sliders'])->name('admin.sliders');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -77,4 +79,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/test-sliders', function () {
+    return response()->json(App\Models\Slider::all());
+});
+
+Route::get('/events', [AdminController::class, 'evenement'])->name('events');
+Route::post('/events', [AdminController::class, 'storeEvenement'])->name('events.store');
+Route::delete('/events/{id}', [AdminController::class, 'deleteEvenement'])->name('events.delete');
+
+Route::get('/events/create', function () {
+    return Inertia::render('Event/EventForm');
+})->name('events.create');
+
+Route::get('/test-events', function () {
+    return response()->json(App\Models\Evenement::all());
+});
 require __DIR__.'/auth.php';
+Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
+
+
+Route::get('/presentation', [AdminController::class, 'presentation'])->name('presentation');
+
+Route::get('/information', [AdminController::class, 'createInformation'])->name('information.create');
+
+Route::post('/information', [AdminController::class, 'storeInformation'])->name('information.store');
+
+
+

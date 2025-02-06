@@ -1,4 +1,5 @@
 import React from "react";
+import { usePage } from '@inertiajs/react';
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import Guest from '@/Layouts/GuestLayout';
 import '@/Style/Presentation.css'
@@ -9,36 +10,24 @@ import slide1 from '@/Assets/SiteSud3.5deff3c7f79f2664d30c.jpg'
 import slide2 from '@/Assets/SiteSud4.287cfcf705cf36fa10d2.jpg'
 import slide3 from '@/Assets/SiteSud6.df1e344005c77a58d5a5.jpg'
 
+interface Information {
+  id: number;
+  titre: string;
+  image: string;
+  nom_image: string;
+  description: string;
+}
 
-const Presentation = () => {
-  const settings = {
-    dots: true, // Affiche des points de navigation
-    infinite: true, // Slider infini
-    speed: 500, // Vitesse de transition
-    slidesToShow: 1, // Nombre d'images visibles
-    slidesToScroll: 1, // Défilement d'une image à la fois
-    centerMode: true, // Centre le slider
-    centerPadding: "0", // Pas de marge supplémentaire
-    arrows: false, // Désactive les flèches
-  };
+interface PageProps {
+  auth: any;
+  informations: Information[];  // Tableau d'objets Information
+  [key: string]: any;
+}
+export default function Presentation() {
+  const { auth, informations } = usePage<PageProps>().props;
 
-  const images = [
-    {
-      // id: 1,
-      src: slide1,
-      alt: "Image 1",
-    },
-    {
-      // id: 2,
-      src: slide2,
-      alt: "Image 2",
-    },
-    {
-      // id: 3,
-      src: slide2,
-      alt: "Image 3",
-    },
-  ];
+  console.log(informations);
+
   return (
     <div className="presentation-container">
       {/* Composant Guest */}
@@ -53,46 +42,35 @@ const Presentation = () => {
             />
             <div className="overlay"></div>
       </div>
-     <div className="presentation-section">
-      <div className="director-container">
-        {/* Image du Directeur */}
-        <div className="director-image">
-          <img
-            src={image2} // Remplacez par le lien de l'image réelle
-            alt="Dr. Denis KONAN"
-            className="director-photo"
-          />
-          <h3 className="director-name">Dr. Denis KONAN</h3>
+      <div className="presentation-section">
+            {informations && informations.length > 0 ? (
+                informations.map((information: any) => (
+                    <div key={information.id} className="director-container">
+                        {/* Image du Directeur */}
+                        <div className="director-image">
+                            <img
+                                src={information.image ?? '/images/default-image.jpg'}  // Utilise une image par défaut si aucune image n'est trouvée
+                                alt='oups'
+                                className="director-photo"
+                            />
+                            <h3 className="director-name">{information.nom_image ?? 'Directeur'}</h3>
+                        </div>
+
+                        {/* Contenu du texte */}
+                        <div className="director-content">
+                            <h2 className="director-title">{information.titre ?? 'Directeur'}</h2>
+                            <p className="director-text">
+                                {information.description ?? 'Aucune information disponible.'}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <p>Aucune information disponible.</p>  // Message si le tableau est vide
+            )}
         </div>
 
-        {/* Contenu du texte */}
-        <div className="director-content">
-          <h2 className="director-title">Mot du Directeur</h2>
-          <p className="director-text">
-            Tout pays ou toute nation, quel que soit son niveau de développement, a besoin de femmes et d'hommes
-            compétents dans le domaine du Génie Civil, car cette discipline fait partie intégrante de toute
-            civilisation. À l'instar de la quasi-totalité des pays africains, notre pays la Côte d'Ivoire qui est en
-            pleine construction aura toujours besoin de techniciens expérimentés dans ce domaine pour asseoir son
-            développement...
-          </p>
-        </div>
-      </div>
-
-      {/* <div className="text2">
-        <h1><span className="line2"></span>Les sites de l ESTP</h1>
-      </div> */}
-    </div>
-
-    {/* <div className="slider-container">
-      <h2 className="slider-title">SITE CENTRE</h2>
-      <Slider {...settings}>
-        {images.map((image) => (
-          <div  className="slider-item">
-            <img src={image.src} alt={image.alt} className="slider-image" />
-          </div>
-        ))}
-      </Slider>
-    </div> */}
+    
 
 
 
@@ -133,4 +111,4 @@ const Presentation = () => {
   );
 };
 
-export default Presentation;
+

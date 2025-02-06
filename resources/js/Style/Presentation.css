@@ -4,10 +4,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
   }
   
   /* Conteneur de l'image floutée */
   .blurred-image-container {
+    
     position: relative;
     width: 100%;
     height: 450px;
@@ -44,6 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 6px solid; */
     /* background: #f5f5f5;  */
   }
   
@@ -96,6 +99,7 @@
   /* Contenu du texte */
   .director-content {
     flex: 1;
+    /* border: 4px solid red; */
   }
   
   .director-title {
@@ -106,11 +110,18 @@
   }
   
   .director-text {
+    /* border: 4px solid; */
+    height: 150px; /* Garde une hauteur fixe */
     font-size: 16px;
     color: #555;
+    width: 100%; /* Largeur limitée */
     line-height: 1.6;
-    text-align: justify;
-  }
+    overflow: hidden; /* Cache le texte qui dépasse */
+    text-align: justify; /* Justifie le texte */
+    white-space: normal; /* Permet le retour automatique à la ligne */
+    word-wrap: break-word; /* S'assure que les mots longs ne débordent pas */
+    overflow-wrap: break-word; /* Alternative moderne à word-wrap */
+}
   
   /* .text2{
     position: absolute;
