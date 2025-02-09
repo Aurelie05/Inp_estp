@@ -77,9 +77,12 @@
   /* Image et nom */
   .director-image {
     display: flex;
+    width: 30%;
+    /* border: 2px solid red; */
     flex-direction: column;
     align-items: center;
   }
+ 
   
   .director-photo {
     width: 150px;
@@ -300,3 +303,119 @@
     width: 100%; /* S'étend sur toute la largeur */
   }
   
+
+  
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .presentation-container{
+    width: 100%;
+    /* border: 4px solid; */
+  }
+  .blurred-image-container{
+    width: 100%;
+    height: 300px;
+    /* border: 5px solid red; */
+  }
+  .presentation-section{
+    width: 90%;
+    position: absolute;
+    /* top: 10px; */
+  }
+  .director-image{
+    width: 40%;
+  }
+  .director-content{
+    width: 60%;
+    
+  }
+  .director-title{
+    font-size: 15px;
+  }
+  .director-text{
+    width: 100%;
+    border: 2px solid;
+    overflow: hidden; /* Cache le texte qui dépasse */
+    text-align: justify; /* Justifie le texte */
+    white-space: normal; /* Permet le retour automatique à la ligne */
+    word-wrap: break-word; /* S'assure que les mots longs ne débordent pas */
+    overflow-wrap: break-word; 
+    font-size: 10px;
+  }
+
+
+
+  .footer-container{
+    width: 100%;
+    height: 600px;
+    /* position: absolute; */
+    flex-direction: column;
+    /* top: 3300px; */
+  }
+  .footer-center{
+    display: none;
+  }
+  .footer-section{
+    margin-bottom: 40px;
+  }
+
+  h3{
+    font-size: 15px;
+
+    color: #6a0dad;
+  }
+ 
+  .footer-center{
+    display: none;
+  }
+  .footer-section{
+    margin-bottom: 40px;
+  }
+
+  h3{
+    font-size: 15px;
+
+    color: #6a0dad;
+  }
+  .footer-bottom{
+    /* margin-top: 50px; */
+    height: 30px;
+    /* border: 1px solid violet; */
+  }
+ }
+ @media screen and (min-width: 768px) and (max-width: 1024px) {
+  .presentation-container{
+    width: 100%;
+    border: 4px solid;
+  }
+  .blurred-image-container{
+    width: 100%;
+    height: 300px;
+    /* border: 5px solid red; */
+  }
+  .presentation-section{
+    width: 80%;
+    /* top: -0px; */
+    /* position: absolute; */
+  }
+  .director-image{
+    width: 30%;
+  }
+  .director-content{
+    width: 70%;
+    
+  }
+  .director-title{
+    font-size: 20px;
+  }
+  .director-text{
+    width: 100%;
+    border: 2px solid;
+    overflow: hidden; /* Cache le texte qui dépasse */
+    text-align: justify; /* Justifie le texte */
+    white-space: normal; /* Permet le retour automatique à la ligne */
+    word-wrap: break-word; /* S'assure que les mots longs ne débordent pas */
+    overflow-wrap: break-word; 
+    font-size: 18px;
+  }
+
+
+ }

@@ -27,13 +27,11 @@ export default function Authenticated({
             </div>
           <nav>
             <ul>
-              <li>Dashboard</li>
+              <li onClick={ () => window.open('/dashboard','_self')}>Dashboard</li>
               <li onClick={ () => window.open('/sliders','_self')}>Slider</li>
-              <li>Presentation</li>
               <li onClick={ () => window.open('/events','_self')}>Evenement</li>
-              <li>Ecole</li>
               <li onClick={ () => window.open('/information','_self')}>Information</li>
-              <li>Filiere</li>
+              <li onClick={ () => window.open('/filieres','_self')}>Filiere</li>
               
             </ul>
           </nav>

@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/sliders', [AdminController::class, 'sliders'])->name('sliders.index'); 
     Route::post('/sliders', [AdminController::class, 'store'])->name('sliders.store');
-    Route::delete('/sliders/{id}', [AdminController::class, 'deleteSlider'])->name('sliders.delete');
+    Route::delete('/sliders/{id}', [AdminController::class, 'destroy'])->name('sliders.delete');
    
     // Afficher le formulaire pour créer un slider
     Route::get('/sliders/create', function () {
@@ -97,6 +97,8 @@ Route::get('/test-events', function () {
 require __DIR__.'/auth.php';
 Route::get('/', [AdminController::class, 'welcome'])->name('welcome');
 
+Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashevent');
+
 
 Route::get('/presentation', [AdminController::class, 'presentation'])->name('presentation');
 
@@ -105,4 +107,17 @@ Route::get('/information', [AdminController::class, 'createInformation'])->name(
 Route::post('/information', [AdminController::class, 'storeInformation'])->name('information.store');
 
 
+Route::post('/filieres', [AdminController::class, 'storeFiliere'])->name('filieres.store');
 
+
+Route::get('/filieres', [AdminController::class, 'createFiliere'])->name('filiere.create');
+Route::get('/filieres', [AdminController::class, 'index'])->name('filiere.create');
+Route::get('/', [AdminController::class, 'index2'])->name('filiere.create');
+
+Route::get('/',[AdminController::class, 'welcome'])->name('welcome');
+Route::get('/ecole',[AdminController::class, 'ecoles'])->name('ecoles');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+});

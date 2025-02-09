@@ -1,6 +1,6 @@
 // import { PageProps } from '@/types';
-import { Head, Link } from '@inertiajs/react';
-import usePage from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
+// import usePage from '@inertiajs/react';
 import Guest from '@/Layouts/GuestLayout';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -39,6 +39,11 @@ type EventInfo = {
     titre: string;
     image: string;
 }
+interface Filiere {
+    id: number;
+    cycle: string;
+    nom_filiere: string;
+}
  
 
 export default function Welcome({
@@ -48,6 +53,9 @@ export default function Welcome({
     evenements,
     sliders,
 }: PageProp) {
+    const { filieres = [] } = usePage().props as { filieres?: Filiere[] };
+    const filieresTechSup = filieres.filter(filiere => filiere.cycle === "Cycle Technicien Supérieur");
+    const filieresIngenieur = filieres.filter(filiere => filiere.cycle === "Cycle Ingénieur");
     const handleImageError = () => {
         document
             .getElementById('screenshot-container')
@@ -112,33 +120,33 @@ export default function Welcome({
                 </div>
 
                 <div className="events-container">
-            <h1 className="events-title">
-                <span className="line2"></span>
-                NOS EVENEMENTS
-            </h1>
-            <div className="events-cards">
-                {(evenements && evenements.length > 0) ? (
-                    evenements.map((event) => (
-                        <div key={event.id} className="event-card">
-                            <img
-                                src={`/storage/${event.image}`}
-                                // alt={event.titre}
-                                className="event-image"
-                            />
-                            <div className="event-details">
-                                <div className="event-info">
-                                    <span className="event-date">📅 {event.date}</span>
-                                    <span className="event-lieu">📍 {event.lieu}</span>
+                    <h1 className="events-title">
+                        <span className="line2"></span>
+                        NOS EVENEMENTS
+                    </h1>
+                    <div className="events-cards">
+                        {(evenements && evenements.length > 0) ? (
+                            evenements.map((event) => (
+                                <div key={event.id} className="event-card">
+                                    <img
+                                        src={`/storage/${event.image}`}
+                                        // alt={event.titre}
+                                        className="event-image"
+                                    />
+                                    <div className="event-details">
+                                        <div className="event-info">
+                                            <span className="event-date">📅 {event.date}</span>
+                                            <span className="event-lieu">📍 {event.lieu}</span>
+                                        </div>
+                                        <p className="event-description">{event.description}</p>
+                                    </div>
                                 </div>
-                                <p className="event-description">{event.description}</p>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>Aucun événement pour le moment.</p>
-                )}
-            </div>
-        </div>
+                            ))
+                        ) : (
+                            <p>Aucun événement pour le moment.</p>
+                        )}
+                    </div>
+                </div>
                 
                 
                 <div className='box4'>
@@ -150,33 +158,36 @@ export default function Welcome({
                         <img src={image2} alt="" />
                     </div>
                     <div className='boxliste'>
-                        <p>
-                            <h1>Cycle Technicien Supérieur</h1>
-                            <ul>
-                                <li> Technicien Supérieur spécialité Bâtiment et Urbanisme</li>
-                                <li>Technicien Supérieur spécialité Hydraulique et Environnement</li>
-                                <li>Technicien Supérieur spécialité Routes et Transports</li>
-                                <li>Technicien Supérieur spécialité Géomètre</li>
-                            </ul>
-                        </p>
+                        <h1>Cycle Technicien Supérieur</h1>
+                        <ul>
+                            {filieresTechSup.length > 0 ? (
+                                filieresTechSup.map(filiere => (
+                                    <li key={filiere.id}>{filiere.nom_filiere}</li>
+                                ))
+                            ) : (
+                                <li>Aucune filière disponible</li>
+                            )}
+                        </ul>
                     </div>
                 </div>
+
                 <div className='box5'>
                 
                     <div className='boximage2'>
                         <img src={image3} alt="" />
                     </div>
                     <div className='boxliste'>
-                        <p>
-                            <h1>Cycle Ingenieur</h1>
-                            <ul>
-                                <li> Technicien Supérieur spécialité Bâtiment et Urbanisme</li>
-                                <li>Technicien Supérieur spécialité Hydraulique et Environnement</li>
-                                <li>Technicien Supérieur spécialité Routes et Transports</li>
-                                <li>Technicien Supérieur spécialité Géomètre</li>
-                            </ul>
-                        </p>
-                    </div>
+                <h1>Cycle Technicien Supérieur</h1>
+                <ul>
+                    {filieresTechSup.length > 0 ? (
+                        filieresTechSup.map(filiere => (
+                            <li key={filiere.id}>{filiere.nom_filiere}</li>
+                        ))
+                    ) : (
+                        <li>Aucune filière disponible</li>
+                    )}
+                </ul>
+            </div>
                 </div>
 
                 <div className='box6'>

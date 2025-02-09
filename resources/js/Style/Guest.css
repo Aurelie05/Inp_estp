@@ -195,7 +195,7 @@
         
             width: 50%;
             height: 80px;
-            padding: 5px;
+            padding: 15px;
             object-fit: contain;
     }
     .menu2 {
@@ -207,7 +207,7 @@
         justify-content: center;
         align-content: center;
         display: block !important;
-        font-size: 40px;
+        font-size: 35px;
         /* border: 2px solid pink; */
         /* margin-right: 60px; */
     }
@@ -250,20 +250,32 @@
 
 @media screen and (min-width:768px) and (max-width:1024px) {
 		
+    .navbar2{
+        /* width: 100%; */
+        display: none;
+
+    }
     .navbar{
-        width: 100vw;
+        width: 100%;
+        /* display: none; */
 
     }
     .logosection{
-        width: 10vw;
-        border: 3px solid orange;
-        /* margin-right: 120px; */
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* padding: 5px; */
+        /* margin: 10px; */
+        /* border: 2px solid; */
     }
-    .menusection .menu{
-        width: auto;
-        font-size: 15px;
-        border: 2px solid ;
+    
+    .menusection{
+        width: 80%;
+        /* border: 2px solid; */
+        font-size: 14px;
     }
+    
 }
  
 

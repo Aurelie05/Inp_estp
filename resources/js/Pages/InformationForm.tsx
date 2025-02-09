@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from '@inertiajs/react';
 import Authenticated from '@/Layouts/AuthenticatedLayout';
 
@@ -12,72 +12,80 @@ export default function InformationForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/information'); // Le route pour soumettre le formulaire
+        post('/information');
     };
 
     return (
         <Authenticated>
-            <div className="p-6">
-                <h1 className="text-xl font-bold mb-4">Ajouter Information</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="titre" className="block">Titre</label>
-                        <input
-                            type="text"
-                            id="titre"
-                            value={data.titre}
-                            onChange={(e) => setData('titre', e.target.value)}
-                            className="border p-2 w-full"
-                        />
-                        {errors.titre && <span className="text-red-500">{errors.titre}</span>}
-                    </div>
+            <div className="flex justify-center items-center min-h-screen bg-gray-100">
+                <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+                    <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Ajouter Information</h1>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        
+                        {/* Titre */}
+                        <div>
+                            <label htmlFor="titre" className="block text-sm font-medium text-gray-700">Titre</label>
+                            <input
+                                type="text"
+                                id="titre"
+                                value={data.titre}
+                                onChange={(e) => setData('titre', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                            />
+                            {errors.titre && <span className="text-red-500 text-sm">{errors.titre}</span>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="image" className="block">Image</label>
-                        <input
-                            type="file"
-                            id="image"
-                            onChange={(e) => {
-                                if (e.target.files && e.target.files[0]) {
-                                    setData('image', e.target.files[0]); // Stocke le fichier sélectionné
-                                }
-                            }}
-                            className="border p-2 w-full"
-                        />
-                        {errors.image && <span className="text-red-500">{errors.image}</span>}
-                    </div>
+                        {/* Image */}
+                        <div>
+                            <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image</label>
+                            <input
+                                type="file"
+                                id="image"
+                                onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                        setData('image', e.target.files[0]);
+                                    }
+                                }}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                            />
+                            {errors.image && <span className="text-red-500 text-sm">{errors.image}</span>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="nom_image" className="block">Nom de l'image</label>
-                        <input
-                            type="text"
-                            id="nom_image"
-                            value={data.nom_image}
-                            onChange={(e) => setData('nom_image', e.target.value)}
-                            className="border p-2 w-full"
-                        />
-                        {errors.nom_image && <span className="text-red-500">{errors.nom_image}</span>}
-                    </div>
+                        {/* Nom de l'image */}
+                        <div>
+                            <label htmlFor="nom_image" className="block text-sm font-medium text-gray-700">Nom de l'image</label>
+                            <input
+                                type="text"
+                                id="nom_image"
+                                value={data.nom_image}
+                                onChange={(e) => setData('nom_image', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                            />
+                            {errors.nom_image && <span className="text-red-500 text-sm">{errors.nom_image}</span>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="description" className="block">Description</label>
-                        <textarea
-                            id="description"
-                            value={data.description}
-                            onChange={(e) => setData('description', e.target.value)}
-                            className="border p-2 w-full"
-                        />
-                        {errors.description && <span className="text-red-500">{errors.description}</span>}
-                    </div>
+                        {/* Description */}
+                        <div>
+                            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea
+                                id="description"
+                                value={data.description}
+                                onChange={(e) => setData('description', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                            />
+                            {errors.description && <span className="text-red-500 text-sm">{errors.description}</span>}
+                        </div>
 
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
-                        disabled={processing}
-                    >
-                        {processing ? 'Envoi...' : 'Soumettre'}
-                    </button>
-                </form>
+                        {/* Bouton de soumission */}
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-500 text-white py-2 rounded-md transition-transform transform hover:scale-105 active:scale-95"
+                            disabled={processing}
+                        >
+                            {processing ? 'Envoi...' : 'Soumettre'}
+                        </button>
+                    </form>
+                </div>
             </div>
         </Authenticated>
     );

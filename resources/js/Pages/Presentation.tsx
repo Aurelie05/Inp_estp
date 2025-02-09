@@ -29,9 +29,10 @@ export default function Presentation() {
   console.log(informations);
 
   return (
+    <Guest>
     <div className="presentation-container">
       {/* Composant Guest */}
-      <Guest />
+     
 
       {/* Section avec l'image floutée */}
       <div className="blurred-image-container">
@@ -44,15 +45,11 @@ export default function Presentation() {
       </div>
       <div className="presentation-section">
             {informations && informations.length > 0 ? (
-                informations.map((information: any) => (
+                informations.map((information) => (
                     <div key={information.id} className="director-container">
                         {/* Image du Directeur */}
                         <div className="director-image">
-                            <img
-                                src={information.image ?? '/images/default-image.jpg'}  // Utilise une image par défaut si aucune image n'est trouvée
-                                alt='oups'
-                                className="director-photo"
-                            />
+                            <img src={`/storage/${information.image}`} alt="Information" className="director-photo" />
                             <h3 className="director-name">{information.nom_image ?? 'Directeur'}</h3>
                         </div>
 
@@ -108,6 +105,7 @@ export default function Presentation() {
     </footer>
     {/* <Footer></Footer> */}
     </div>
+    </Guest>
   );
 };
 

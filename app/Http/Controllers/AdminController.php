@@ -11,6 +11,7 @@ use App\Models\Ecole;
 use App\Models\Information;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -103,16 +104,14 @@ class AdminController extends Controller
        if (!$slider) {
            return Inertia::render('SliderPage', [
                'message' => 'Slider non trouvé',
+               'sliders' => Slider::all(),
            ]);
        }
 
        $slider->delete(); // Supprimer le slider
 
        // Retourner une réponse Inertia après la suppression
-       return Inertia::render('SliderPage', [
-           'sliders' => Slider::all(),
-           'message' => 'Slider supprimé avec succès',
-       ]);
+       return redirect()->route('sliderPage')->with('success', 'Slider supprimé avec succès');
    }
    
 
@@ -127,17 +126,39 @@ class AdminController extends Controller
          ]);
        
      }
+     public function dashboard()
+     {
+        $evenements = Evenement::select('id', 'titre', 'date', 'lieu')
+                                ->orderBy('date', 'desc')
+                                ->get();
+        if (Auth::check()) {                        
+        $userName = Auth::user()->name; // Récupérer l'utilisateur connecté
+        // dd($userName);  
+        } else {
+            $userName = 'Invité';
+        return redirect()->route('login');
+    }
+            // dd($userName); 
+         return Inertia::render('Dashboard', [
+             'evenements' => $evenements, // Envoyer les événements à Inertia
+             'userName' => $userName // Passer l'utilisateur à la vue
+
+         ]);
+         
+       
+     }
         public function welcome()
     {
         // Récupérer les événements pour la page d'accueil
         $evenements = Evenement::all();
           // Récupérer les sliders
         $sliders = Slider::all(); // Assure-toi que tu as bien un modèle Slider configuré
-       
+        $filieres = Filiere::all();
         // Retourner la vue d'accueil (Welcome) avec les événements
         return Inertia::render('Welcome', [
             'evenements' => $evenements,
             'sliders' => $sliders,
+            'filieres' => $filieres,
             
         ]);
     }
@@ -169,14 +190,17 @@ class AdminController extends Controller
      }
  
      // Suppression d'un événement
-     public function deleteEvenement($id)
-     {
-         $evenement = Evenement::findOrFail($id);
-         $evenement->delete();
-         return redirect()->route('evenement')->with('success', 'Événement supprimé avec succès !');
-     }
-
-
+    public function deleteEvenement($id)
+{
+    $evenement = Evenement::findOrFail($id);
+    $evenement->delete();
+    
+    // Réponse Inertia avec les événements mis à jour
+    return Inertia::render('EventPage', [
+        'evenements' => Evenement::all(),
+        'message' => 'Événement supprimé avec succès !'
+    ]);
+}
      public function presentation()
 {
     // Récupérer les informations à afficher sur la page de présentation
@@ -203,19 +227,140 @@ class AdminController extends Controller
             'nom_image' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
+    
+        // Création de l'instance de Information
+        $information = new Information();
+        $information->titre = $validated['titre'];
+        $information->nom_image = $validated['nom_image'];
+        $information->description = $validated['description'];
+    
+        // Vérifier si une image a été uploadée et la stocker
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/information'); // Stocke dans storage/app/public/information
-            $validated['image'] = Storage::url($imagePath); // Génère une URL exploitable
+            $information->image = $request->file('image')->store('informations', 'public');
         }
     
-        // Créer l'information dans la base de données
-        Information::create($validated);
+        // Sauvegarde dans la base de données
+        $information->save();
     
         // Retourner la page avec un message de succès
         return redirect()->route('presentation')->with('success', 'Information ajoutée avec succès');
     }
-
     
+
+public function showImage($id)
+{
+    $information = Information::find($id);
+    
+    if (!$information) {
+        // Retourner un message d'erreur via Inertia si l'information n'est pas trouvée
+        return Inertia::render('Presentation', [
+            'message' => 'Information non trouvée',
+        ]);
+    }
+
+    // Retourner l'image trouvée avec Inertia
+    return Inertia::render('Presentation', [
+        'image' => $information->image,
+    ]);
+}
+public function createFiliere()
+{
+    // $filieres = Filiere::all();
+    // Récupérer uniquement les filières où débouchés n'est pas "Non spécifié" ou vide
+    $filieres = Filiere::whereNotNull('debouchés')
+                       ->where('debouchés', '!=', 'Non spécifié')
+                       ->where('debouchés', '!=', '')
+                       ->get();
+
+    $filieresIngénieur = DB::table('filieres')
+                       ->where('cycle', 'Cycle Ingénieur')
+                       ->get();
+    $filieresTechnicien = DB::table('filieres')
+                       ->where('cycle', 'Cycle Technicien Superieur')
+                       ->get();
+    return inertia('Ecole', [
+        'filieres' => $filieres,
+        'filieresIngénieur' => $filieresIngénieur,
+        'filieresTechnicien' => $filieresTechnicien
+
+    ]);
+}
+public function index()
+{
+    $filieres = Filiere::all();
+
+    return inertia('FiliereForm', [
+        'filieres' => $filieres
+
+    ]);
+}
+public function index2()
+{
+    $filieres = Filiere::all(); // Récupérer toutes les filières
+    return Inertia::render('Welcome', ['filieres' => $filieres]);
 }
 
 
+
+// public function storeFiliere(Request $request)
+//     {
+//         $request->validate([
+//             'cycle' => 'required|string|max:255',
+//             'nom_filiere' => 'required|string|max:255',
+//             'debouchés' => 'required|string',
+//         ]);
+
+//         Filiere::create($request->all());
+
+//         return redirect()->route('ecoles')->with('success', 'Filière ajoutée avec succès');
+//     }
+
+public function storeFiliere(Request $request)
+{
+    // Validation des données
+    $request->validate([
+        'cycle' => 'required|string',
+        'nom_filiere' => 'required|string',
+        'debouchés' => 'required|string',
+    ]);
+
+    // Trouver la filière existante
+    $filiere = Filiere::where('cycle', $request->cycle)
+                      ->where('nom_filiere', $request->nom_filiere)
+                      ->first();
+
+    if ($filiere) {
+        // Mise à jour des débouchés
+        $filiere->debouchés = $request->debouchés;
+        $filiere->save();
+
+        return redirect()->route('ecoles')->with('success', 'Filière mise à jour avec succès');
+    } else {
+        // Créer une nouvelle filière si elle n'existe pas encore
+        Filiere::create([
+            'cycle' => $request->cycle,
+            'nom_filiere' => $request->nom_filiere,
+            'debouchés' => $request->debouchés,
+        ]);
+
+        return redirect()->route('ecoles')->with('success', 'Filière ajoutée avec succès');
+    }
+}
+
+    
+public function ecoles()
+    
+{
+    $filieres = Filiere::all();
+
+    return Inertia::render('Ecoles', [
+       
+        'filieres' => $filieres,
+        
+    ]);
+}   
+
+
+
+    
+}

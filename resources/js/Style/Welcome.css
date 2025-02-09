@@ -15,19 +15,15 @@
     justify-content: center;
     align-content: center;
     overflow: hidden;
+    position: relative;
     /* display: flex; */
-    /* border: 1px solid red; */
+    /* border: 1px solid rgb(72, 177, 11); */
     /* object-fit: cover; */
     z-index: -1;
     /* margin: 0 auto; */
     /* background-color: rgb(20, 3, 66); */
 }
-/* .imageslider {
-    width: 80%;
-    height: 500px;
-    
-    background-color: aquamarine;
-} */
+
 
 .imageslider img {
     width: 100%;
@@ -39,7 +35,7 @@
     margin: 0 auto;
     object-fit: cover;
     /* border: 1px solid; */
-    /* display: block; */
+    display: block;
     /* background-color: brown; */
 }
 .text-box {
@@ -47,10 +43,10 @@
     width: 80%;
     max-width: 1200px;
     padding: 20px;
-    background-color: #7a7cdf; 
+    background-color: #aea4e7; 
     color: white;
     position: absolute;
-    bottom: -230px; 
+    bottom: -150px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -141,7 +137,7 @@
   
   /* Box avec le contenu */
   .box {
-    background-color: #6b2b85;
+    background-color: #aea4e7;
     color: white;
     text-align: center;
     padding: 1rem;
@@ -153,7 +149,7 @@
   
   /* Style pour la section Cycle */
   .cycle {
-    background-color: #6b2b85;
+    background-color: #aea4e7;
     color: white;
     text-align: center;
     padding: 1rem;
@@ -186,7 +182,7 @@
     position: absolute;
     top: 400px;
     background-color: white;
-    border: 5px solid #6e1eaf;
+    border: 5px solid #aea4e7;
     padding: 10px;
 }
 .image{
@@ -390,7 +386,7 @@
     display: flex;
     font-family: "Poppins", serif;
     font-weight: 800;
-    color: #6e1eaf;
+    color: #aea4e7;
 }
 .boximage{
     /* width: 50%; */
@@ -442,7 +438,7 @@
     display: flex;
     font-family: "Poppins", serif;
     font-weight: 800;
-    color: #6e1eaf;
+    color: #aea4e7;
 }
 .boximage2{
     width: 30%;
@@ -519,20 +515,20 @@
     display: flex;
     font-family: "Poppins", serif;
     font-weight: 800;
-    color: #6e1eaf;
+    color: #aea4e7;
 }
 .box7 {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 2550px;
+    top: 2580px;
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
     width: 80%;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre sous le cadre */
-    background-color: #e9e5e5;
+    background-color: #e4dede;
     margin-bottom: 20px;
 }
 .box7 h1{
@@ -548,7 +544,7 @@
     display: flex;
     font-family: "Poppins", serif;
     font-weight: 800;
-    color: #6e1eaf;
+    color: #aea4e7;
 }
 .box7 img {
     width: 100%;
@@ -565,7 +561,7 @@
 
 /* Écrans petits (mobile) */
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 767px) {
 
     .welcomecontainer{
         width: 100%;
@@ -759,7 +755,89 @@
  }
  
  /* Écrans moyens (tablette) */
- @media (min-width: 769px) and (max-width: 1024px) {
+ @media (min-width: 768px) and (max-width: 1024px) {
+    .welcomecontainer{
+        width: 100%;
+    }
+    .imageslider{
+        width: 100%;
+        height: 300px;
+        position: relative;
+        /* border: 3px solid; */
+    }
+    .text-box{
+        position: absolute;
+        /* bottom: 5px; */
+        /* border: 2px solid red; */
+
+    }
+    .text-box h1 {
+        font-size: 20px;
+    }
+    /* .text-box span {
+        font-size: 15px;
+    } */
+    .text-box p {
+        font-size: 13px;
+    }
+    .text-box li {
+        font-size: 13px;
+    }
+    .events-container{
+        position: absolute;
+        top: 700px; 
+        /* border: 1px solid; */
+    }
+    .events-title{
+        /* position: absolute; */
+        /* top: 100px; */
+        font-size: 20px;
+    }
+    .box4{
+         position: absolute;
+        top: 1550px; 
+        /* border: 1px solid; */
+    }
+    .box4 h2 {
+        font-size: 20px;
+    }
+    .boxliste h1{
+        font-size: 20px;
+    }
+    
+    .boximage{
+        width: 40%;
+    }
+    .box5{
+        position: absolute;
+        top: 1800px; 
+    }
+    .boximage2{
+        width: 40%;
+    }
+    .box6{
+        position: absolute;
+        top: 2200px; 
+        /* border: 1px solid;  */
+    }
+    .box6 h2{
+        font-size: 20px;
+        /* position: absolute; */
+        /* top: 1000px;  */
+        /* border: 1px solid;  */
+
+    }
+    .boxliste p{
+        font-size: 15px;
+    }
+    .boxliste h1{
+        font-size: 15px;
+    }
+    .box7{
+        position: absolute;
+        top: 2450px; 
+        /* border: 1px solid;  */
+    }
      
  }
  

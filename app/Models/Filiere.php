@@ -12,8 +12,12 @@ class Filiere extends Model
     protected $table = 'filieres';
 
     protected $fillable = [
-        'titre',
+        'cycle',
         'nom_filiere',
         'debouchés',
     ];
+    public function cycle()
+    {
+        return $this->belongsTo(Cycle::class); // Définition de la relation
+    }
 }
