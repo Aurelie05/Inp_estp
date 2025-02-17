@@ -15,6 +15,7 @@ body{
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   padding: 20px;
+  height: 100vh;
 }
 
 .top-bar {
@@ -136,7 +137,7 @@ body{
     width: 200px;
     overflow-y: auto;
     position: absolute;
-    /* top: 100px; */
+    top: 18px;
     height: 100%;
     display: flex;
     border-bottom-right-radius: 30px;

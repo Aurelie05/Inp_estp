@@ -4,11 +4,11 @@
 
 @source "../views";
 
-body{
-    /* background-color: rgb(128, 127, 127); */
-    /* margin-bottom: 15px; */
-    /* padding: 30px; */
-    /* border: 4px solid white; */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
 }
 
 
