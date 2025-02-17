@@ -1,17 +1,14 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @source "../views";
 
-
-.welcomecontainer{
-    width: 100%; /* Force la largeur à 100% de la fenêtre */
-    max-width: 100%; /* Évite un débordement */
-    /* border: 2px solid red; */
-}  
-.parent {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; /* S'étend sur toute la largeur */
+body{
+    /* background-color: rgb(128, 127, 127); */
+    /* margin-bottom: 15px; */
+    /* padding: 30px; */
+    /* border: 4px solid white; */
 }
 
-/*
-/*
+

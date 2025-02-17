@@ -1,8 +1,12 @@
 import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
+import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png';
 import { Inertia } from '@inertiajs/inertia';
+import { BiMenu } from "react-icons/bi";
+import { TbMenuDeep } from "react-icons/tb";
 import { useEffect, useState } from 'react'; // Import de useState et useEffect
 import Authenticated from '@/Layouts/AuthenticatedLayout';
+import { IoPersonCircleSharp } from "react-icons/io5";
 import '@/Style/SliderPage.css';
 
 interface Slider {
@@ -29,10 +33,17 @@ export default function SliderPage() {
     }
   };
 
+  const[menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+      setMenuOpen(!menuOpen);
+  };
   return (
     <Authenticated>
       <div className="p-6">
+      
         <div className="flex justify-between items-center mb-6">
+         
           <h1 className="text-xl font-bold">Sliders</h1>
           <Link
             href="/sliders/create"
@@ -40,6 +51,9 @@ export default function SliderPage() {
           >
             Add Slider
           </Link>
+          <div className='menu2 ' onClick={toggleMenu}>
+              {menuOpen ? <BiMenu /> : <TbMenuDeep />}
+          </div>
         </div>
 
         <ul>
@@ -66,7 +80,31 @@ export default function SliderPage() {
             <p>Aucun slider disponible pour le moment.</p>
           )}
         </ul>
+
+
+        {menuOpen && (
+                <>  
+                <div className='aside'>
+                  <div className="logo">
+                    <img src={logo} alt="" />
+                    ESTP
+                  </div>
+                  <nav>
+                    <ul>
+                      <li onClick={ () => window.open('/dashboard','_self')}>Dashboard</li>
+                      <li onClick={ () => window.open('/sliders','_self')}>Slider</li>
+                      <li onClick={ () => window.open('/events','_self')}>Evenement</li>
+                      <li onClick={ () => window.open('/information','_self')}>Information</li>
+                      <li onClick={ () => window.open('/filieres','_self')}>Filiere</li>
+                      
+                    </ul>
+                  </nav>
+                </div>
+                </>
+
+                )}
       </div>
     </Authenticated>
   );
 }
+

@@ -2,6 +2,8 @@ import Authenticated from '@/Layouts/AuthenticatedLayout';
 import { FormEventHandler } from 'react';
 import { Inertia, Method } from '@inertiajs/inertia';
 import { useForm } from "@inertiajs/react"; 
+import '@/Style/EventForm.css';
+
 
 export default function EventForm() {
     const { data, setData, post, reset, errors } = useForm({
@@ -29,74 +31,71 @@ export default function EventForm() {
 
     return (
         <Authenticated>
-            <div className="flex justify-center items-center min-h-screen bg-gray-100">
-                <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-                    <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Ajouter un Événement</h1>
-                    <form onSubmit={submit} encType="multipart/form-data" className="space-y-6">
+            <div className="form-container">
+                <div className="form-box">
+                    <h1 className="form-title">Ajouter un Événement</h1>
+                    <form onSubmit={submit} encType="multipart/form-data" className="form">
                         
                         {/* Titre */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Titre</label>
+                        <div className="form-group">
+                            <label className="form-label">Titre</label>
                             <input
                                 type="text"
                                 value={data.titre}
                                 onChange={(e) => setData("titre", e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                                className="form-input"
                             />
-                            {errors.titre && <p className="text-red-500 text-sm">{errors.titre}</p>}
+                            {errors.titre && <p className="error-text">{errors.titre}</p>}
                         </div>
-
+    
                         {/* Date */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Date</label>
+                        <div className="form-group">
+                            <label className="form-label">Date</label>
                             <input
                                 type="date"
                                 value={data.date}
                                 onChange={(e) => setData("date", e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                                className="form-input"
                             />
-                            {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+                            {errors.date && <p className="error-text">{errors.date}</p>}
                         </div>
-
+    
                         {/* Lieu */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Lieu</label>
+                        <div className="form-group">
+                            <label className="form-label">Lieu</label>
                             <input
                                 type="text"
                                 value={data.lieu}
                                 onChange={(e) => setData("lieu", e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                                className="form-input"
                             />
-                            {errors.lieu && <p className="text-red-500 text-sm">{errors.lieu}</p>}
+                            {errors.lieu && <p className="error-text">{errors.lieu}</p>}
                         </div>
-
+    
                         {/* Description */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Description</label>
+                        <div className="form-group">
+                            <label className="form-label">Description</label>
                             <textarea
                                 value={data.description}
                                 onChange={(e) => setData("description", e.target.value)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm px-4 py-2"
+                                className="form-textarea"
                             />
-                            {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+                            {errors.description && <p className="error-text">{errors.description}</p>}
                         </div>
-
+    
                         {/* Image */}
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Image</label>
+                        <div className="form-group">
+                            <label className="form-label">Image</label>
                             <input
                                 type="file"
                                 onChange={(e) => setData("image", e.target.files?.[0] || null)}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                                className="form-input"
                             />
-                            {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
+                            {errors.image && <p className="error-text">{errors.image}</p>}
                         </div>
-
+    
                         {/* Bouton de soumission */}
-                        <button 
-                            type="submit" 
-                            className="w-full bg-blue-500 text-white py-2 rounded-md transition-transform transform hover:scale-105 active:scale-95"
-                        >
+                        <button type="submit" className="form-submit">
                             Soumettre
                         </button>
                     </form>
@@ -104,4 +103,5 @@ export default function EventForm() {
             </div>
         </Authenticated>
     );
+    
 }

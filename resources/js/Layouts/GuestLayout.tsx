@@ -2,7 +2,10 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
 import { ImMenu3 } from "react-icons/im";
 import { PropsWithChildren } from 'react';
+import { LuMenu } from "react-icons/lu";
 import { useEffect, useState } from "react";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { CiMenuKebab } from "react-icons/ci";
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png'
 import '@/Style/Guest.css'
 
@@ -54,10 +57,10 @@ export default function Guest({ children }: PropsWithChildren) {
                     <div className='menu ' onClick={ () => window.open('/','_self')}>Accueil</div>
                     <div className='menu ' onClick={ () => window.open('/presentation','_self')}>
                         Présentation
-                        <div className="dropdown-content">
+                        {/* <div className="dropdown-content">
                             <div className="submenu" >Mot du Directeur</div>
                             <div className="submenu" >Campus</div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='menu ' onClick={ () => window.open('/ecole','_self')}>Filieres</div>
                     <div className='menu  ' onClick={ () => window.open('/partenaire','_self')}>Partenaires</div>
@@ -82,7 +85,7 @@ export default function Guest({ children }: PropsWithChildren) {
             </div>
 
             <div className='menu2 ' onClick={toggleMenu}>
-                    {menuOpen ? <ImMenu3 /> : <ImMenu3 />}
+                    {menuOpen ? <IoMdCloseCircleOutline /> : <LuMenu />}
                 </div>
         </div>
 
@@ -92,11 +95,11 @@ export default function Guest({ children }: PropsWithChildren) {
                 <>  
                 <nav className='menu3'>
                     <ul>
-                        <li>Accueil</li>
-                        <li>Presentation</li>
-                        <li>Filieres</li>
-                        <li>Partenaires</li>
-                        <li>Actualités</li>
+                        <li onClick={ () => window.open('/','_self')}>Accueil</li>
+                        <li onClick={ () => window.open('/presentation','_self')}>Presentation</li>
+                        <li onClick={ () => window.open('/ecole','_self')}>Filieres</li>
+                        <li onClick={ () => window.open('/partenaire','_self')}>Partenaires</li>
+                        <li onClick={ () => window.open('/actualités','_self')}>Actualités</li>
                         <li>Offres de stage</li>
                     </ul>
                     

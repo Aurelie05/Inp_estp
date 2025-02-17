@@ -1,10 +1,13 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { BiMenu } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { TbMenuDeep } from "react-icons/tb";
 import logo from '@/Assets/ESTP.f30db3437790b8dbc7d7.png';
 import { usePage } from '@inertiajs/react';
 import { IoPersonCircleSharp } from "react-icons/io5";
+import '@/Style/Dash.css';
 
-// import '@/Style/Dash.css';
 interface DashboardProps {
   userName: string;
   evenements: Evenement[];
@@ -21,6 +24,11 @@ export default function Dashboard() {
   // const { user } = usePage().props as unknown as { user: { name: string } }; 
   const { userName, evenements } = usePage().props as unknown as DashboardProps;
   // console.log(user);
+  const[menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+      setMenuOpen(!menuOpen);
+  };
     return (
         <AuthenticatedLayout>
             <main className="dashboard">
@@ -31,12 +39,16 @@ export default function Dashboard() {
                         className="search-bar p-2 rounded-md border border-gray-300"
                     />
                     <div className="user-section flex items-center gap-4">
-                    <span className="notification">{userName ? userName : 'Invité'}</span> {/* Affiche le nom de l'utilisateur ou 'Invité' si non défini */}
-                        {/* <span className="settings">Settings</span> */}
-                        <span className="text-4xl"> {/* Augmentation de la taille de l'icône */}
-                          <IoPersonCircleSharp />
-                        </span>                    
+                      
+                      <span className="notification">{userName ? userName : 'Invité'}</span> {/* Affiche le nom de l'utilisateur ou 'Invité' si non défini */}
+                          {/* <span className="settings">Settings</span> */}
+                          <span className="text-4xl"> {/* Augmentation de la taille de l'icône */}
+                            <IoPersonCircleSharp />
+                          </span>                    
                     </div>
+                    <div className='menu2 ' onClick={toggleMenu}>
+                          {menuOpen ? <BiMenu /> : <TbMenuDeep />}
+                      </div>
                 </div>
 
                 {/* <div className="stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
@@ -75,6 +87,28 @@ export default function Dashboard() {
                         )}
                     </div>
                 </div>
+
+                {menuOpen && (
+                <>  
+                <div className='aside'>
+                  <div className="logo">
+                    <img src={logo} alt="" />
+                    ESTP
+                  </div>
+                  <nav>
+                    <ul>
+                      <li onClick={ () => window.open('/dashboard','_self')}>Dashboard</li>
+                      <li onClick={ () => window.open('/sliders','_self')}>Slider</li>
+                      <li onClick={ () => window.open('/events','_self')}>Evenement</li>
+                      <li onClick={ () => window.open('/information','_self')}>Information</li>
+                      <li onClick={ () => window.open('/filieres','_self')}>Filiere</li>
+                      
+                    </ul>
+                  </nav>
+                </div>
+                </>
+
+                )}
 
                 {/* Section des filières récentes */}
                 {/* <div className="filieres-summary bg-gray-200 p-6 rounded-lg shadow-lg mt-8 m-8">
